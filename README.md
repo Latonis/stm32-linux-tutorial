@@ -63,7 +63,7 @@ Once all of the pre-requisites are installed and ready to go, we can create a pr
    1. Click `Yes` to download all the needed dependencies
    2. Agree to the license terms and agreements and click `Finish`
 
-# Building the project in Visual Studio Code
+# Configuring the Project in Visual Studio Code
 1. Navigate to the project directory
 2. Once inside the project directory, run `code .` and VS Code will open the project folder
    ![vs code project](images/vs-proj.png)
@@ -78,8 +78,33 @@ Once all of the pre-requisites are installed and ready to go, we can create a pr
    4. In the `defines` section, add the entries from Step 3.
    ![vs json](images/vs-json.png)
    5. Intellisense is now functioning correctly!
-
 5. Edit the `Makefile` to include a step to flash the binary to the physical device
    1. Add `flash: st-flash write $(BUILD_DIR)/$(TARGET).bin 0x8000000` to the end of the `Makefile`
 6. Now that the `Makefile` is correct, let's compile the project and flash it to the board
    1. Open a Terminal in VS Code with `` Control + Shift + ` ``
+   2. Build the project with `make`
+      - Successful build is looks like this:
+        ![vs build](images/vs-build.png)
+   3. Flash the project with `make flash`
+      - Upon successful flashing, a message is displayed: `INFO common.c: Flash written and verified! jolly good!` 
+        ![vs flash](images/vs-flash.png)
+
+# Blink an LED!
+In the IOC file created earlier in `STM32CubeMX`, the LED defines are visible on pins `PB0` and `PB1`. As those are initialized by the default configuration, let's make one blink!
+![MX IOC](images/stm-ioc.png)
+
+1. Open `main.c` in the `Core/Src/` directory.
+2. Find the `while` loop in `main.c`
+3. Add the following code inside the `while` loop:
+```c
+HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
+HAL_Delay(500);
+```
+4. Save the file
+5. Open a terminal is VS Code again
+   - `` Control + Shift + ` ``
+6. Build the project
+   -  `make`
+7. Flash the project to the board
+   - `make flash`
+8. You're now blinked the red LED (`LED3`) on the board!
