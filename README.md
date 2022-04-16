@@ -83,7 +83,7 @@ Once all of the pre-requisites are installed and ready to go, we can create a pr
 6. Now that the `Makefile` is correct, let's compile the project and flash it to the board
    1. Open a Terminal in VS Code with `` Control + Shift + ` ``
    2. Build the project with `make`
-      - Successful build is looks like this:
+      - Successful builds looks like this:
         ![vs build](images/vs-build.png)
    3. Flash the project with `make flash`
       - Upon successful flashing, a message is displayed: `INFO common.c: Flash written and verified! jolly good!` 
@@ -101,10 +101,10 @@ HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
 HAL_Delay(500);
 ```
 4. Save the file
-5. Open a terminal is VS Code again
+5. Open a terminal in VS Code again
    - `` Control + Shift + ` ``
 6. Build the project
    -  `make`
 7. Flash the project to the board
    - `make flash`
-8. You're now blinked the red LED (`LED3`) on the board!
+8. You're now blinking the red LED (`LED3`) on the board!
